@@ -3,6 +3,8 @@ import pyxel, random
 # taille de la fenetre 128x128 pixels
 # ne pas modifier
 pyxel.init(128, 128, title="Nuit du c0de", fps=75)
+pyxel.load("PYXEL_RESOURCE_FILE.pyxres")
+
 
 # position initiale du vaisseau
 # (origine des positions : coin haut gauche)
@@ -147,7 +149,7 @@ def draw():
     # si le vaisseau possède des vies, le jeu continue
     if vies > 0:
         # vaisseau (carré 8x8)
-        pyxel.rect(vaisseau_x, vaisseau_y, 8, 8, 1)
+        pyxel.blt(vaisseau_x, vaisseau_y, 0, 0, 11, 11, 15, 0)
 
         # tirs
         for tir in tirs_liste:
@@ -155,7 +157,8 @@ def draw():
 
         # ennemis
         for ennemi in ennemis_liste:
-            pyxel.rect(ennemi[0], ennemi[1], 8, 8, 8)
+            pyxel.blt(ennemi[0], ennemi[1], 0, 0, 0, 10, 10, 0)
+
 
         # explosions
         for explosion in explosions_liste:
