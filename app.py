@@ -61,7 +61,7 @@ def ennemis_creation(ennemis_liste):
     """Création aléatoire des ennemis"""
     if pyxel.frame_count % 120 == 0:  # Un ennemi toutes les 120 frames
         ennemis_liste.append(
-            [random.randint(0, 112), 0, random.randint(0, 4)]
+            [random.randint(0, 112), 0, random.randint(0, 6)]
         )  # Ajout type ennemi
     return ennemis_liste
 
