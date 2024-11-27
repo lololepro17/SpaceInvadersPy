@@ -59,9 +59,9 @@ def tirs_deplacement(tirs_liste):
 
 def ennemis_creation(ennemis_liste):
     """Création aléatoire des ennemis"""
-    if pyxel.frame_count % 60 == 0:  # Un ennemi toutes les 60 frames
+    if pyxel.frame_count % 120 == 0:  # Un ennemi toutes les 120 frames
         ennemis_liste.append(
-            [random.randint(0, 112), 0, random.randint(0, 2)]
+            [random.randint(0, 112), 0, random.randint(0, 4)]
         )  # Ajout type ennemi
     return ennemis_liste
 
@@ -88,9 +88,7 @@ def ennemis_atteignent_bas(ennemis_liste, vies):
 def ennemis_tir(missiles_ennemis_liste):
     """Ajout de tirs d'ennemis correspondant à leur type avec des probabilités aléatoires"""
     for ennemi in ennemis_liste:
-        if (
-            random.randint(50, 100) < 1
-        ):  # 5% de chance de tirer par ennemi à chaque frame
+        if random.randint(1, 300) < 5:  # chance de tirer par ennemi à chaque frame
             type_ennemi = ennemi[2]
             missiles_ennemis_liste.append([ennemi[0] + 4, ennemi[1] + 8, type_ennemi])
     return missiles_ennemis_liste
@@ -188,13 +186,13 @@ def draw():
             pyxel.blt(tir[0], tir[1], 0, 48, 16, 8, 8, 0)
         for ennemi in ennemis_liste:
             type_ennemi = ennemi[2]
-            pyxel.blt(ennemi[0], ennemi[1], 0, type_ennemi * 16, 0, 16, 16, 0)
+            pyxel.blt(ennemi[0], ennemi[1], 1, type_ennemi * 16, 0, 16, 16, 0)
         for missile in missiles_ennemis_liste:
             type_missile = missile[2]
             pyxel.blt(missile[0], missile[1], 0, type_missile * 16, 16, 8, 8, 0)
         for explosion in explosions_liste:
             frame = explosion[2] * 16
-            pyxel.blt(explosion[0], explosion[1], 0, frame, 32, 16, 16, 0)
+            pyxel.blt(explosion[0], explosion[1], 0, frame, 24, 16, 16, 0)
         pyxel.text(5, 5, f"VIES: {vies}", 7)
     else:
         pyxel.text(40, 60, "GAME OVER", 7)
